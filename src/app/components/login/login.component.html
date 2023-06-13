@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header header">
+          <h4 class="fs-2 fw-bold">Sign In</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="userForm" (submit)="formDone($event)">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                [(ngModel)]="userName"
+                type="text"
+                class="form-control"
+                formControlName="userName"
+                aria-describedby="userNameHelp"
+                id="username"
+                placeholder="Enter username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                [(ngModel)]="password"
+                type="password"
+                class="form-control"
+                formControlName="password"
+                id="password"
+                placeholder="Enter password"
+              />
+            </div>
+            <button type="submit" class="btn mt-4 px-3">Login</button>
+            <button class="btn mt-4 px-3 mx-3" [routerLink]="['/Register']">
+              Register
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

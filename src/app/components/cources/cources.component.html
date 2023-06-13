@@ -1,0 +1,7 @@
+<div class="container">
+  <div *ngFor="let course of courses">
+    <h3 (click)="goToExam(course.id)">
+      {{course.exam_name}}
+    </h3>
+  </div>
+</div>

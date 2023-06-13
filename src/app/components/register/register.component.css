@@ -1,0 +1,15 @@
+.header{
+  background-color: #64437d;
+  color: white;
+  text-align: center;
+
+}
+button{
+  background-color: #198353;
+  color: white;
+}
+
+button:hover{
+  background-color: #dafeee;
+  border: solid 2px #198353;
+}

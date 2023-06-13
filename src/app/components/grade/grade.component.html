@@ -1,0 +1,6 @@
+<div class="container">
+  <div *ngIf="std.grade !='';else name">{{std.grade}}</div>
+
+  <ng-template #name>no data</ng-template>
+
+</div>
