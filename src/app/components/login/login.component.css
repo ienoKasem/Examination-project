@@ -1,16 +1,10 @@
-.header{
-  background-color: #64437d;
-  color: white;
-  text-align: center;
 
-}
-button{
-  background-color: #198353;
-  color: white;
-}
-
-button:hover{
-  background-color: #dafeee;
-  border: solid 2px #198353;
+.card-header{background-color:rgb(146, 81, 119);}
+.card-body{background-color:lavenderblush;}
+.btn{background-color:rgb(124, 55, 78);border: none;}
+.home{
+  background-color: #eee;
+  padding-top: 50px;
+  min-height: 100vh;
 }
 

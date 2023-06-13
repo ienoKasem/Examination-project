@@ -1,5 +1,6 @@
 export interface ExamData {
 
+  id:number
   exam_name:string,
   questions:Quest[]
 

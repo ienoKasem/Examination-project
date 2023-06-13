@@ -23,6 +23,9 @@ export class ExamComponent implements OnInit{
   flag:boolean=false;
   answerString:string='';
   addedOnce:boolean=false;
+  QnameAddedToScore:{Qnum:number ,answer:string}[]=[]
+
+
   score:number=0;
 
   checkForLastAnswers:number=0
@@ -49,7 +52,9 @@ getExamData():void
   .subscribe({
     next:res => {
       this.ExamData=res;
-      this.fetchNext();}
+      this.allquestions =this.ExamData.questions.length;
+      this.fetchNext();
+    }
   });
 }
 
@@ -68,7 +73,7 @@ getExamData():void
     this.pagination = event;
 
     //For submit button
-    if(event == 5){this.flag =true}
+    if(event == this.allquestions){this.flag =true}
     else{this.flag =false}
 
 
@@ -89,21 +94,29 @@ getExamData():void
 
     if(this.answerString == this.questions[this.pagination-1].answer)
     {
+      this.QnameAddedToScore.push({Qnum:questID,answer:this.answerString})
+
+      console.log(`${this.answerString} ---- ${this.questions[this.pagination-1].answer}`)
       this.score = this.score+10;
       this.addedOnce=true
     }
     else
     {
-      if(this.addedOnce)
+      let obj = this.QnameAddedToScore.filter(n=>n.Qnum==questID);
+      console.log(obj)
+      if(obj.length !=0)
       {
+        this.QnameAddedToScore=this.QnameAddedToScore.filter(n=>n.Qnum!=questID)
+
         this.score=this.score-10;
-        this.addedOnce=false
+        console.log("miunus")
+
       }
     }
 
     this.numOfAns=event.target.attributes.id.value
     this.answers[questID]={numOfQuest:questID,numOfans:this.numOfAns,ans:this.answerString}
-    console.log( this.answers[questID])
+    // console.log( this.answers[questID])
   }
 
 
@@ -128,7 +141,7 @@ getExamData():void
   {
     this._questionService.setSutdentScore(`${this.UserId}`,this.std).subscribe({
       next:res=>{
-        console.log(res);
+        // console.log(res);
         this._router.navigate(["/Grade"])
       }
     })

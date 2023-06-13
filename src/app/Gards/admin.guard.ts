@@ -12,23 +12,16 @@ import { UsersService } from '../services/users.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private _usersService: UsersService, private _router: Router) {}
-
   canActivate(
-    next: ActivatedRouteSnapshot,
+    route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean {
-    let isLoggedIn = this._usersService.isLoggedin;
-    if (isLoggedIn) {
-      return true;
-    } else {
-      alert("Can't access!!");
-      this._router.navigate(['/Login']);
-      return false;
-    }
-  }
-  isAdmin(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
     let isAdmin = this._usersService.IsAdmin;
     if (isAdmin) {
       return true;
